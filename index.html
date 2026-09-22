@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Screwed Shop</title>
+<meta name="description" content="The workshop of rScrewed: JavaScript projects, tools, and automation, plus Minecraft Bedrock Scripting-API development. Current release: Nyx Sniffer.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="screwed.shop">
+<meta property="og:description" content="The workshop of rScrewed: JavaScript projects, tools, and automation, plus Minecraft Bedrock Scripting-API development. Current release: Nyx Sniffer.">
+<meta property="og:image" content="https://screwed.shop/og.png">
+<meta property="og:url" content="https://screwed.shop/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="screwed.shop">
+<meta name="twitter:description" content="The workshop of rScrewed: JavaScript projects, tools, and automation, plus Minecraft Bedrock Scripting-API development. Current release: Nyx Sniffer.">
+<meta name="twitter:image" content="https://screwed.shop/og.png">
+
+<style>
+  :root{
+    --bg:#08080c;
+    --bg-raised:#101016;
+    --bg-card:#121219;
+    --border:#23232d;
+    --border-soft:#1b1b23;
+    --text:#e9e9ee;
+    --text-dim:#9a9aa6;
+    --text-faint:#63636e;
+    --violet:#8b7cf0;
+    --blue:#5ec4e0;
+    --accent:#8b7cf0;
+    --accent-soft:rgba(139,124,240,0.14);
+    --grad:linear-gradient(90deg, var(--violet), var(--blue));
+    --mono:'JetBrains Mono','SFMono-Regular',Consolas,monospace;
+    --sans:'Space Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  :focus-visible{outline:2px solid var(--violet); outline-offset:3px; border-radius:4px;}
+
+  .wrap{max-width:1000px; margin:0 auto; padding:0 24px;}
+
+  /* HERO: the workshop identity */
+  header.hero{padding:80px 0 56px; text-align:center; position:relative; overflow:hidden;}
+  header.hero::before{
+    content:''; position:absolute; top:-260px; left:50%; transform:translateX(-50%);
+    width:820px; height:520px;
+    background:radial-gradient(ellipse at center, var(--accent-soft) 0%, transparent 68%);
+    pointer-events:none;
+  }
+  .ident{display:inline-flex; align-items:center; gap:12px; margin-bottom:26px;}
+  .ident img{width:38px; height:38px; border-radius:9px; image-rendering:pixelated; border:1px solid var(--border);}
+  .ident .name{font-family:var(--mono); font-size:19px; font-weight:700; letter-spacing:-0.01em;}
+  .ident .name .accent-text{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  h1{
+    font-size:clamp(30px,4.6vw,46px); font-weight:700; letter-spacing:-0.03em;
+    line-height:1.1; margin-bottom:20px;
+  }
+  h1 .accent-text{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .lede{font-size:17px; color:var(--text-dim); max-width:640px; margin:0 auto 30px;}
+  .lede b{color:var(--text); font-weight:600;}
+  code{font-family:var(--mono); font-size:0.86em; background:var(--bg-raised); border:1px solid var(--border); border-radius:5px; padding:1px 6px; color:var(--text);}
+  .cta-row{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:16px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:15px; font-weight:650; padding:12px 22px; border-radius:10px;
+    text-decoration:none; border:1px solid transparent; transition:transform .15s ease, border-color .15s ease;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--grad); color:#0b0a14; font-family:var(--mono); letter-spacing:-0.01em;}
+  .btn-secondary{background:var(--bg-raised); color:var(--text); border-color:var(--border);}
+  .btn-secondary:hover{border-color:var(--violet);}
+  .hero-meta{font-size:13px; color:var(--text-faint);}
+
+  /* SECTION SCAFFOLD */
+  section{padding:14px 0;}
+  .tools{padding-bottom:90px;}
+  .section-head{max-width:640px; margin:0 auto 30px;}
+  .kicker{font-family:var(--mono); font-size:12px; color:var(--violet); margin-bottom:10px;}
+  h2{font-size:clamp(23px,3.2vw,30px); font-weight:700; letter-spacing:-0.02em; margin-bottom:12px; text-align:center;}
+  .section-head .kicker{text-align:center;}
+  .section-sub{color:var(--text-dim); font-size:15.5px; text-align:center;}
+
+  /* PROJECT LIST (collapsible) */
+  .projects-title{margin-bottom:26px;}
+  .proj-list{max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:14px;}
+  .proj{border:1px solid var(--border); border-radius:14px; background:var(--bg-card); overflow:hidden;}
+  .proj[open]{border-color:var(--violet);}
+  .proj-head{display:flex; align-items:center; gap:14px; padding:20px 22px; cursor:pointer; list-style:none; user-select:none;}
+  summary.proj-head::-webkit-details-marker{display:none;}
+  summary.proj-head::marker{content:"";}
+  .proj-head:hover .ptitle{color:var(--violet);}
+  .disc{width:22px; height:22px; flex:none; display:inline-block;}
+  .proj-meta{display:flex; flex-direction:column; gap:3px; flex:1; text-align:left; min-width:0;}
+  .ptitle{font-family:var(--mono); font-weight:700; font-size:17px; letter-spacing:-0.01em; transition:color .15s ease;}
+  .ptag{font-family:var(--mono); font-size:11.5px; color:var(--text-faint);}
+  .chev{font-family:var(--mono); font-size:24px; line-height:1; color:var(--violet); transition:transform .2s ease; flex:none;}
+  .proj[open] .chev{transform:rotate(90deg);}
+  .soon-row{opacity:0.75; border-style:dashed;}
+  .soon-row .proj-head{cursor:default;}
+
+  /* PROJECT BODY (Nyx detail) */
+  .proj-body{text-align:center; padding:10px 24px 30px; border-top:1px solid var(--border-soft);}
+  .prod-sub{font-size:16px; color:var(--text-dim); max-width:620px; margin:14px auto 16px;}
+  .prod-sub b{color:var(--text); font-weight:600;}
+  .proj-body .hero-meta{margin-top:12px;}
+  .demo-frame{
+    margin-top:30px; border-radius:14px; border:1px solid var(--border);
+    overflow:hidden; box-shadow:0 30px 70px -40px rgba(0,0,0,0.7);
+  }
+  .demo-frame img{width:100%;}
+
+  /* GALLERY (inside project body) */
+  .more{text-align:center; color:var(--text-dim); font-size:15px; margin:6px auto 0; max-width:620px;}
+  .more a{color:var(--violet); text-decoration:none; border-bottom:1px solid var(--accent-soft);}
+  .more a:hover{border-color:var(--violet);}
+  .shots{display:flex; flex-direction:column; gap:16px; margin-top:26px;}
+  .shots .more{margin:16px auto 4px;}
+  .shot-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:720px){ .shot-grid{grid-template-columns:1fr;} }
+  .shot{border:1px solid var(--border); border-radius:12px; overflow:hidden; background:var(--bg);}
+  .shot img{width:100%; display:block;}
+  .shot .cap{padding:11px 15px; font-size:13px; color:var(--text-dim); border-top:1px solid var(--border-soft); font-family:var(--mono); text-align:left;}
+
+  ::selection{background:var(--accent-soft); color:var(--text);}
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .btn:hover{transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="ident">
+      <img src="favicon.png" alt="">
+      <span class="name">Screwed</span>
+    </div>
+    <h1>The workshop of <span class="accent-text">Screwed</span>.</h1>
+    <p class="lede">
+      I make <b>JavaScript projects, tools, and automation</b>. I'm also a Minecraft
+      <b>Bedrock dev</b> specializing in the Scripting API: custom gameplay systems, economy
+      mechanics, and automation with <code>@minecraft/server</code>, plus JSON-UI menus, HUDs,
+      and branded interfaces. On the side I'm into <b>OSINT</b>, which is where Nyx came from.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-secondary" href="https://github.com/rScrewed">GitHub</a>
+      <a class="btn btn-secondary" href="https://ko-fi.com/rscrewed">Ko-fi</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="tools">
+  <div class="wrap">
+    <h2 class="projects-title">My projects</h2>
+    <div class="proj-list">
+
+      <details class="proj" id="nyx">
+        <summary class="proj-head">
+          <img class="disc" src="discord.png" alt="Discord">
+          <span class="proj-meta">
+            <span class="ptitle">NYX-Sniffer</span>
+            <span class="ptag">Discord OSINT · Windows</span>
+          </span>
+          <span class="chev" aria-hidden="true">›</span>
+        </summary>
+        <div class="proj-body">
+          <p class="prod-sub">
+            Provide a Discord user ID and Nyx compiles that account's activity across every server
+            you share with them into a single, searchable profile. It captures
+            <b>their full history of messages, files, and mentions</b>, along with
+            <b>topics discussed, contacts, and active hours.</b>
+          </p>
+          <p class="more">
+            The <a href="https://github.com/rScrewed/NyX-Sniffer#readme">GitHub README</a>
+            has the full feature list, with examples, plus setup instructions.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://github.com/rScrewed/NyX-Sniffer">Download</a>
+            <a class="btn btn-secondary" href="https://ko-fi.com/rscrewed">Get a license key</a>
+          </div>
+          <div class="hero-meta">Free to download · a license key is required to run it · use only with authorization</div>
+          <p class="more"><a href="https://www.virustotal.com/gui/file/10c8a641f43cb53a2d523811657e549e582cb230715fa579c0ca65572b3a9e7c">View the VirusTotal scan of the release →</a></p>
+
+          <div class="demo-frame">
+            <img src="https://raw.githubusercontent.com/rScrewed/NyX-Sniffer/main/images/demo.gif" alt="Nyx scanning a target with several parallel workers" loading="lazy">
+          </div>
+
+          <div class="shots">
+      <div class="shot">
+        <img src="https://raw.githubusercontent.com/rScrewed/NyX-Sniffer/main/images/word-wall.png" alt="Word Wall in the browser viewer" loading="lazy">
+        <div class="cap">Word Wall: most-used words, sized by frequency</div>
+      </div>
+      <div class="shot">
+        <img src="https://raw.githubusercontent.com/rScrewed/NyX-Sniffer/main/images/heatmap.png" alt="Heatmap of messages per hour of day" loading="lazy">
+        <div class="cap">Heatmap: messages by hour of the day</div>
+      </div>
+      <div class="shot">
+        <img src="https://raw.githubusercontent.com/rScrewed/NyX-Sniffer/main/images/timeline.png" alt="Timeline of monthly message volume" loading="lazy">
+        <div class="cap">Timeline: monthly volume across the scanned history</div>
+      </div>
+      <div class="shot-grid">
+        <div class="shot">
+          <img src="https://raw.githubusercontent.com/rScrewed/NyX-Sniffer/main/images/workers-collecting.png" alt="Several workers collecting data in parallel" loading="lazy">
+          <div class="cap">Workers collecting in parallel, one status row each</div>
+        </div>
+        <div class="shot">
+          <img src="https://raw.githubusercontent.com/rScrewed/NyX-Sniffer/main/images/discovering-servers.png" alt="Nyx discovering shared servers" loading="lazy">
+          <div class="cap">Finding the servers you share with the target</div>
+        </div>
+      </div>
+
+      <p class="more">
+        OSINT tagging in action: the feed filtered to one category at a time.
+        Usernames, avatars, IDs, and images are blurred in these examples.
+      </p>
+      <div class="shot">
+        <img src="https://raw.githubusercontent.com/rScrewed/NyX-Sniffer/main/images/osint-technical.png" alt="Technical category: hardware and setup mentions" loading="lazy">
+        <div class="cap">Technical: hardware and setup mentions</div>
+      </div>
+      <div class="shot">
+        <img src="https://raw.githubusercontent.com/rScrewed/NyX-Sniffer/main/images/osint-identity.png" alt="Identity category: nationality, appearance, and posted images" loading="lazy">
+        <div class="cap">Identity: nationality, appearance, posted images</div>
+      </div>
+      <div class="shot">
+        <img src="https://raw.githubusercontent.com/rScrewed/NyX-Sniffer/main/images/osint-places.png" alt="Places category: countries, cities, and server regions" loading="lazy">
+        <div class="cap">Places: countries, cities, server regions</div>
+      </div>
+      <div class="shot">
+        <img src="https://raw.githubusercontent.com/rScrewed/NyX-Sniffer/main/images/osint-physical.png" alt="Physical category: tattoos, injuries, and other physical details" loading="lazy">
+        <div class="cap">Physical: tattoos, injuries, physical details</div>
+      </div>
+          </div><!-- .shots -->
+        </div><!-- .proj-body -->
+      </details>
+
+    </div>
+  </div>
+</section>
+</main>
+
+</body>
+</html>
