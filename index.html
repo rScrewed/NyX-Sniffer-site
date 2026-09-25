@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Screwed Shop</title>
-<meta name="description" content="The workshop of rScrewed: JavaScript projects, tools, and automation, plus Minecraft Bedrock Scripting-API development. Current release: Nyx Sniffer.">
+<meta name="description" content="The workshop of rScrewed: JavaScript projects, tools, and automation, plus Minecraft Bedrock Scripting-API development. Current release: NyX-Sniffer.">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,12 +12,12 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="screwed.shop">
-<meta property="og:description" content="The workshop of rScrewed: JavaScript projects, tools, and automation, plus Minecraft Bedrock Scripting-API development. Current release: Nyx Sniffer.">
+<meta property="og:description" content="The workshop of rScrewed: JavaScript projects, tools, and automation, plus Minecraft Bedrock Scripting-API development. Current release: NyX-Sniffer.">
 <meta property="og:image" content="https://screwed.shop/og.png">
 <meta property="og:url" content="https://screwed.shop/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="screwed.shop">
-<meta name="twitter:description" content="The workshop of rScrewed: JavaScript projects, tools, and automation, plus Minecraft Bedrock Scripting-API development. Current release: Nyx Sniffer.">
+<meta name="twitter:description" content="The workshop of rScrewed: JavaScript projects, tools, and automation, plus Minecraft Bedrock Scripting-API development. Current release: NyX-Sniffer.">
 <meta name="twitter:image" content="https://screwed.shop/og.png">
 
 <style>
@@ -112,7 +112,7 @@
   .soon-row{opacity:0.75; border-style:dashed;}
   .soon-row .proj-head{cursor:default;}
 
-  /* PROJECT BODY (Nyx detail) */
+  /* PROJECT BODY (NyX-Sniffer detail) */
   .proj-body{text-align:center; padding:10px 24px 30px; border-top:1px solid var(--border-soft);}
   .prod-sub{font-size:16px; color:var(--text-dim); max-width:620px; margin:14px auto 16px;}
   .prod-sub b{color:var(--text); font-weight:600;}
@@ -122,6 +122,16 @@
     overflow:hidden; box-shadow:0 30px 70px -40px rgba(0,0,0,0.7);
   }
   .demo-frame img{width:100%;}
+
+  .feature-list{list-style:none; max-width:620px; margin:0 auto 22px; text-align:left; display:flex; flex-direction:column; gap:8px;}
+  .feature-list li{position:relative; padding-left:20px; font-size:15px; color:var(--text-dim);}
+  .feature-list li::before{content:''; position:absolute; left:2px; top:0.72em; width:7px; height:7px; border-radius:50%; background:var(--grad);}
+  .feature-list b{color:var(--text); font-weight:600;}
+  .run-block{
+    max-width:520px; margin:10px auto 14px; padding:14px 18px; text-align:left; overflow-x:auto;
+    font-family:var(--mono); font-size:13.5px; line-height:1.6; color:var(--text);
+    background:var(--bg-raised); border:1px solid var(--border); border-radius:10px;
+  }
 
   /* GALLERY (inside project body) */
   .more{text-align:center; color:var(--text-dim); font-size:15px; margin:6px auto 0; max-width:620px;}
@@ -156,7 +166,7 @@
       I make <b>JavaScript projects, tools, and automation</b>. I'm also a Minecraft
       <b>Bedrock dev</b> specializing in the Scripting API: custom gameplay systems, economy
       mechanics, and automation with <code>@minecraft/server</code>, plus JSON-UI menus, HUDs,
-      and branded interfaces. On the side I'm into <b>OSINT</b>, which is where Nyx came from.
+      and branded interfaces. On the side I'm into <b>OSINT</b>, which is where NyX-Sniffer came from.
     </p>
     <div class="cta-row">
       <a class="btn btn-secondary" href="https://github.com/rScrewed">GitHub</a>
@@ -175,31 +185,44 @@
         <summary class="proj-head">
           <img class="disc" src="discord.png" alt="Discord">
           <span class="proj-meta">
-            <span class="ptitle">NYX-Sniffer</span>
-            <span class="ptag">Discord OSINT · Windows</span>
+            <span class="ptitle">NyX-Sniffer</span>
+            <span class="ptag">Discord OSINT · Open source · Node.js</span>
           </span>
           <span class="chev" aria-hidden="true">›</span>
         </summary>
         <div class="proj-body">
           <p class="prod-sub">
-            Provide a Discord user ID and Nyx compiles that account's activity across every server
+            Provide a Discord user ID and NyX-Sniffer compiles that account's activity across every server
             you share with them into a single, searchable profile. It captures
             <b>their full history of messages, files, and mentions</b>, along with
             <b>topics discussed, contacts, and active hours.</b>
           </p>
 
+          <ul class="feature-list">
+            <li><b>Profile viewer:</b> word wall, heatmap, timeline, and ranked mentioners in your browser.</li>
+            <li><b>OSINT tags:</b> location, income, identity, social, and more, plus <b>Bannable</b> (Terms of Service violations) and <b>Device</b> (which phone or camera a file came from).</li>
+            <li><b>Sort Files:</b> a local AI classifier sorts downloaded images into categories and finds new ones on its own.</li>
+            <li><b>Parallel workers:</b> add more accounts to scan large servers faster.</li>
+          </ul>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://github.com/rScrewed/NyX-Sniffer/releases/tag/v2.1">Download v2.1 Open SRC</a>
+            <a class="btn btn-secondary" href="https://github.com/rScrewed/NyX-Sniffer">View on GitHub</a>
+          </div>
+          <div class="hero-meta">Free and open source (MIT) · runs on Node.js 20+ · use only with authorization</div>
+
+          <p class="more">Run it from source:</p>
+          <pre class="run-block">git clone https://github.com/rScrewed/NyX-Sniffer.git
+cd NyX-Sniffer
+npm install
+npm start</pre>
           <p class="more">
             The <a href="https://github.com/rScrewed/NyX-Sniffer#readme">GitHub README</a>
             has the full feature list, with examples, plus setup instructions.
           </p>
-          <div class="cta-row">
-            <a class="btn btn-primary" href="https://github.com/rScrewed/NyX-Sniffer">Download</a>
-          </div>
-          <div class="hero-meta">Free to download · no license key needed · use only with authorization</div>
-          <p class="more"><a href="https://www.virustotal.com/gui/file/10c8a641f43cb53a2d523811657e549e582cb230715fa579c0ca65572b3a9e7c">View the VirusTotal scan of the release →</a></p>
 
           <div class="demo-frame">
-            <img src="https://raw.githubusercontent.com/rScrewed/NyX-Sniffer/main/images/demo.gif" alt="Nyx scanning a target with several parallel workers" loading="lazy">
+            <img src="https://raw.githubusercontent.com/rScrewed/NyX-Sniffer/main/images/demo.gif" alt="NyX-Sniffer scanning a target with several parallel workers" loading="lazy">
           </div>
 
           <div class="shots">
@@ -221,7 +244,7 @@
           <div class="cap">Workers collecting in parallel, one status row each</div>
         </div>
         <div class="shot">
-          <img src="https://raw.githubusercontent.com/rScrewed/NyX-Sniffer/main/images/discovering-servers.png" alt="Nyx discovering shared servers" loading="lazy">
+          <img src="https://raw.githubusercontent.com/rScrewed/NyX-Sniffer/main/images/discovering-servers.png" alt="NyX-Sniffer discovering shared servers" loading="lazy">
           <div class="cap">Finding the servers you share with the target</div>
         </div>
       </div>
